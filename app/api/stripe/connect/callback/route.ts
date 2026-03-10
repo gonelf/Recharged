@@ -1,5 +1,6 @@
+export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
@@ -18,7 +19,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const response = await stripe.oauth.token({
+    const response = await getStripe().oauth.token({
       grant_type: "authorization_code",
       code,
     });
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest) {
     const livemode = response.livemode ?? false;
 
     // Fetch account details
-    const account = await stripe.accounts.retrieve(connectedAccountId);
+    const account = await getStripe().accounts.retrieve(connectedAccountId);
 
     // Upsert the StripeAccount record
     await prisma.stripeAccount.upsert({

@@ -1,10 +1,12 @@
 import Anthropic from "@anthropic-ai/sdk";
 
-const globalForAnthropic = globalThis as unknown as { anthropic: Anthropic };
+let _client: Anthropic | null = null;
 
-export const anthropic =
-  globalForAnthropic.anthropic ??
-  new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
-if (process.env.NODE_ENV !== "production")
-  globalForAnthropic.anthropic = anthropic;
+// Lazy singleton — only instantiated on first call, not at module load time
+// (prevents build-time errors when ANTHROPIC_API_KEY is not set)
+export function getAnthropic(): Anthropic {
+  if (!_client) {
+    _client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! });
+  }
+  return _client;
+}

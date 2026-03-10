@@ -1,9 +1,16 @@
 import Stripe from "stripe";
 
-// Recharged's own Stripe account (platform)
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-02-24.acacia",
-});
+let _stripe: Stripe | null = null;
+
+// Lazy singleton — only instantiated on first call (prevents build-time errors)
+export function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: "2025-02-24.acacia",
+    });
+  }
+  return _stripe;
+}
 
 // Get a Stripe client scoped to a connected account's access token
 export function getConnectedStripe(accessToken: string): Stripe {

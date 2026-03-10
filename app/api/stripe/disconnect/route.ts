@@ -1,6 +1,7 @@
+export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthSession } from "@/lib/auth";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(request: NextRequest) {
@@ -18,7 +19,7 @@ export async function POST(request: NextRequest) {
   }
 
   try {
-    await stripe.oauth.deauthorize({
+    await getStripe().oauth.deauthorize({
       client_id: process.env.STRIPE_CLIENT_ID!,
       stripe_user_id: stripeAccountId,
     });
