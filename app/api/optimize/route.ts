@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { getAuthSession } from "@/lib/auth";
-import { getAnthropic } from "@/lib/anthropic";
+import { getGemini } from "@/lib/gemini";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import type { OptimizeRequest, PageVariantSuggestion } from "@/types";
@@ -77,20 +77,16 @@ Return ONLY a valid JSON array of 3 objects. No markdown, no explanation, just t
 
   let variants: PageVariantSuggestion[];
   try {
-    const message = await getAnthropic().messages.create({
-      model: "claude-sonnet-4-6",
-      max_tokens: 1024,
-      messages: [{ role: "user", content: prompt }],
-    });
-
-    const text = message.content[0].type === "text" ? message.content[0].text : "";
+    const model = getGemini().getGenerativeModel({ model: "gemini-2.0-flash" });
+    const result = await model.generateContent(prompt);
+    const text = result.response.text();
     variants = JSON.parse(text);
 
     if (!Array.isArray(variants) || variants.length === 0) {
       throw new Error("Invalid response format");
     }
   } catch (err) {
-    console.error("Claude optimization error:", err);
+    console.error("Gemini optimization error:", err);
     return NextResponse.json(
       { error: "AI optimization failed" },
       { status: 500 }
