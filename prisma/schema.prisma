@@ -1,0 +1,218 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Auth (NextAuth) ──────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  passwordHash  String?
+  name          String?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Recharged's own subscription (billing for Recharged itself)
+  rechargedPlan      RechargedPlan @default(FREE)
+  rechargedCustomerId String?       // cus_xxx on Recharged's Stripe account
+  rechargedSubId      String?       // sub_xxx on Recharged's Stripe account
+  rechargedSubStatus  String?       // active | trialing | past_due | canceled
+
+  accounts       Account[]
+  sessions       Session[]
+  stripeAccounts StripeAccount[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+enum RechargedPlan {
+  FREE
+  STARTER
+  GROWTH
+  ENTERPRISE
+}
+
+// ─── Stripe Connect Accounts ──────────────────────────────────────────────────
+
+model StripeAccount {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  stripeAccountId String   @unique // acc_xxx (connected account)
+  accessToken     String           // encrypted OAuth token
+  refreshToken    String?
+  livemode        Boolean  @default(false)
+  accountName     String?
+  accountEmail    String?
+
+  // Webhook endpoint registered on the connected account
+  webhookEndpointId String?
+
+  // Trial defaults configured by the account owner
+  defaultTrialDays  Int    @default(14)
+  backupCardDiscount Int   @default(20) // percent off for adding backup card
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  trials        Trial[]
+  blocklist     BlocklistEntry[]
+  events        ConversionEvent[]
+  pageVariants  PageVariant[]
+}
+
+// ─── Trials ───────────────────────────────────────────────────────────────────
+
+model Trial {
+  id              String @id @default(cuid())
+  stripeAccountId String
+  stripeAccount   StripeAccount @relation(fields: [stripeAccountId], references: [id], onDelete: Cascade)
+
+  // Stripe references
+  paymentIntentId String  @unique // pi_xxx – the manual-capture authorization
+  customerId      String          // cus_xxx on the connected account
+  priceId         String?         // price_xxx – the subscription price
+
+  // Trial user info
+  customerEmail String
+  customerName  String?
+  customerIp    String?
+
+  // Financial
+  amountCents Int    // e.g. 4900 for $49
+  currency    String @default("usd")
+
+  // Status lifecycle
+  status TrialStatus @default(AUTHORIZED)
+
+  // Dates
+  trialEndsAt  DateTime
+  convertedAt  DateTime?
+  canceledAt   DateTime?
+
+  // Attribution / UTM
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  pageVariantId String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  events ConversionEvent[]
+}
+
+enum TrialStatus {
+  AUTHORIZED // requires_capture – authorization hold active
+  CONVERTED  // captured – user became paying customer
+  CANCELED   // hold released – user canceled
+  EXPIRED    // authorization expired (>7 days, Stripe voided it)
+  FAILED     // authorization attempt failed (card declined etc.)
+}
+
+// ─── Fraud / Blocklist ────────────────────────────────────────────────────────
+
+model BlocklistEntry {
+  id              String @id @default(cuid())
+  stripeAccountId String
+  stripeAccount   StripeAccount @relation(fields: [stripeAccountId], references: [id], onDelete: Cascade)
+
+  type   BlocklistType
+  value  String        // email address, IP, or card fingerprint
+  reason String?
+
+  createdAt DateTime @default(now())
+
+  @@unique([stripeAccountId, type, value])
+}
+
+enum BlocklistType {
+  EMAIL
+  IP
+  CARD_FINGERPRINT
+}
+
+// ─── Events / Analytics ───────────────────────────────────────────────────────
+
+model ConversionEvent {
+  id              String @id @default(cuid())
+  stripeAccountId String
+  stripeAccount   StripeAccount @relation(fields: [stripeAccountId], references: [id], onDelete: Cascade)
+
+  trialId   String?
+  trial     Trial?  @relation(fields: [trialId], references: [id])
+
+  eventType String  // trial_started | authorized | fraud_blocked | converted | canceled | expired | backup_card_prompted | backup_card_added
+  metadata  Json?
+
+  createdAt DateTime @default(now())
+}
+
+// ─── AI Page Variants ─────────────────────────────────────────────────────────
+
+model PageVariant {
+  id              String @id @default(cuid())
+  stripeAccountId String
+  stripeAccount   StripeAccount @relation(fields: [stripeAccountId], references: [id], onDelete: Cascade)
+
+  name         String
+  headline     String
+  ctaText      String
+  bodyText     String?
+  badgeText    String? // e.g. "No charge until trial ends"
+  rationale    String? // Claude's reasoning for this variant
+
+  isActive     Boolean @default(false)
+  generatedByAI Boolean @default(true)
+
+  // Simple impression/conversion counters (updated via events)
+  impressions  Int @default(0)
+  conversions  Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
