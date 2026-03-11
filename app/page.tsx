@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HomeNav } from "@/components/marketing/HomeNav";
 
 const features = [
   {
@@ -36,42 +37,7 @@ const features = [
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
-        <div className="text-2xl font-bold">
-          <span className="text-primary">Re</span>acquire
-        </div>
-        <div className="hidden md:flex items-center gap-1">
-          {features.map((f) => (
-            <Link
-              key={f.href}
-              href={f.href}
-              className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-black/5 rounded-md transition font-medium"
-            >
-              {f.title}
-            </Link>
-          ))}
-          <Link
-            href="/pricing"
-            className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-black/5 rounded-md transition font-medium"
-          >
-            Pricing
-          </Link>
-        </div>
-        <div className="flex gap-4">
-          <Link
-            href="/login"
-            className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition"
-          >
-            Sign In
-          </Link>
-          <Link
-            href="/register"
-            className="px-4 py-2 text-sm bg-primary text-primary-foreground border-2 border-black rounded-md font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:shadow-none transition"
-          >
-            Start Free
-          </Link>
-        </div>
-      </nav>
+      <HomeNav />
 
       <section className="text-center px-8 py-24 max-w-4xl mx-auto">
         <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary rounded-full px-4 py-1.5 text-sm text-primary mb-8">
