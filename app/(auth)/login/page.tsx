@@ -34,20 +34,20 @@ function LoginContent() {
   }, [searchParams, router]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
+    <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="text-2xl font-bold">
-            <span className="text-purple-600">Re</span>acquire
+            <span className="text-primary">Re</span>acquire
           </Link>
-          <p className="text-slate-600 mt-2">Sign in to your account</p>
+          <p className="text-muted-foreground mt-2">Sign in to your account</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+        <div className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black p-8">
           {status === "loading" ? (
             <div className="text-center py-4">
-              <div className="inline-block w-6 h-6 border-2 border-purple-600 border-t-transparent rounded-full animate-spin mb-3" />
-              <p className="text-slate-600 text-sm">Signing you in...</p>
+              <div className="inline-block w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin mb-3" />
+              <p className="text-muted-foreground text-sm">Signing you in...</p>
             </div>
           ) : (
             <>
@@ -76,7 +76,7 @@ function LoginContent() {
                 Continue with Stripe
               </a>
 
-              <p className="text-center text-xs text-slate-500 mt-4">
+              <p className="text-center text-xs text-muted-foreground mt-4">
                 New users will have an account created automatically.
               </p>
             </>

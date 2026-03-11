@@ -75,24 +75,24 @@ const stats = [
 
 export default function AnalyticsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <FeaturesNav activeHref="/features/analytics" />
 
       {/* Hero */}
       <section className="text-center px-8 py-24 max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 bg-purple-900/50 border border-purple-700 rounded-full px-4 py-1.5 text-sm text-purple-300 mb-8">
-          <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+        <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary rounded-full px-4 py-1.5 text-sm text-primary mb-8">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           Analytics
         </div>
 
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
           Every conversion metric,{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+          <span className="text-primary">
             in one place
           </span>
         </h1>
 
-        <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+        <p className="text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
           Reacquire gives you a real-time view of your entire trial-to-paid
           funnel. Know exactly what's working, what's not, and where to focus to
           grow revenue.
@@ -101,13 +101,13 @@ export default function AnalyticsPage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/register"
-            className="px-8 py-4 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg font-semibold transition shadow-lg shadow-purple-900/50"
+            className="px-8 py-4 bg-primary text-primary-foreground border-2 border-black rounded-md text-lg font-bold transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Start Free Trial →
           </Link>
           <Link
             href="/login"
-            className="px-8 py-4 border border-slate-600 hover:border-slate-400 rounded-xl text-lg font-semibold transition"
+            className="px-8 py-4 border-2 border-black rounded-md text-lg font-bold hover:bg-muted transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Sign In
           </Link>
@@ -120,12 +120,12 @@ export default function AnalyticsPage() {
           {stats.map((s) => (
             <div
               key={s.value}
-              className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center"
+              className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6 text-center"
             >
-              <div className="text-4xl font-bold text-purple-400 mb-1">
+              <div className="text-4xl font-bold text-primary mb-1">
                 {s.value}
               </div>
-              <div className="text-slate-300 text-sm">{s.label}</div>
+              <div className="text-foreground/80 text-sm">{s.label}</div>
             </div>
           ))}
         </div>
@@ -135,7 +135,7 @@ export default function AnalyticsPage() {
       <section className="px-8 py-20 max-w-5xl mx-auto">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">How it works</h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             From raw Stripe events to actionable conversion insights,
             automatically.
           </p>
@@ -145,14 +145,14 @@ export default function AnalyticsPage() {
           {steps.map((step) => (
             <div
               key={step.number}
-              className="bg-white/5 border border-white/10 rounded-2xl p-7 flex gap-5"
+              className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-7 flex gap-5"
             >
-              <div className="text-3xl font-black text-purple-500/60 shrink-0 leading-none mt-0.5">
+              <div className="text-3xl font-black text-primary/40 shrink-0 leading-none mt-0.5">
                 {step.number}
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -167,7 +167,7 @@ export default function AnalyticsPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Data that drives growth
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Stop flying blind. Start making decisions backed by your real
             conversion data.
           </p>
@@ -177,11 +177,11 @@ export default function AnalyticsPage() {
           {benefits.map((b) => (
             <div
               key={b.title}
-              className="bg-white/5 border border-white/10 rounded-2xl p-6"
+              className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6"
             >
               <div className="text-3xl mb-3">{b.icon}</div>
               <h3 className="text-lg font-semibold mb-2">{b.title}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {b.description}
               </p>
             </div>
@@ -191,17 +191,17 @@ export default function AnalyticsPage() {
 
       {/* CTA */}
       <section className="px-8 py-24 text-center">
-        <div className="max-w-2xl mx-auto bg-white/5 border border-white/10 rounded-3xl p-12">
+        <div className="max-w-2xl mx-auto border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             See your full conversion picture
           </h2>
-          <p className="text-slate-300 mb-8 text-lg">
+          <p className="text-foreground/80 mb-8 text-lg">
             Connect Reacquire and get instant access to the analytics that show
             you exactly how to grow.
           </p>
           <Link
             href="/register"
-            className="inline-block px-10 py-4 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg font-semibold transition shadow-lg shadow-purple-900/50"
+            className="inline-block px-10 py-4 bg-primary text-primary-foreground border-2 border-black rounded-md text-lg font-bold transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Get Started Free →
           </Link>
