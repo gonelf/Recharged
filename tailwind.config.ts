@@ -48,6 +48,10 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "accent-blue": "hsl(var(--accent-blue))",
+        "accent-green": "hsl(var(--accent-green))",
+        "accent-pink": "hsl(var(--accent-pink))",
+        "accent-purple": "hsl(var(--accent-purple))",
       },
       borderRadius: {
         lg: "var(--radius)",

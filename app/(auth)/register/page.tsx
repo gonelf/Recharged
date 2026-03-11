@@ -4,18 +4,18 @@ import Link from "next/link";
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50">
+    <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="text-2xl font-bold">
-            <span className="text-purple-600">Re</span>acquire
+            <span className="text-primary">Re</span>acquire
           </Link>
-          <p className="text-slate-600 mt-2">Create your account</p>
+          <p className="text-muted-foreground mt-2">Create your account</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+        <div className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black p-8">
           <div className="mb-6 text-center">
-            <p className="text-slate-700 text-sm">
+            <p className="text-foreground text-sm">
               Connect your Stripe account to get started. We&apos;ll create your
               Reacquire account automatically.
             </p>
@@ -40,9 +40,9 @@ export default function RegisterPage() {
             Connect with Stripe
           </a>
 
-          <p className="text-center text-xs text-slate-500 mt-4">
+          <p className="text-center text-xs text-muted-foreground mt-4">
             Already have an account?{" "}
-            <Link href="/login" className="text-purple-600 hover:underline">
+            <Link href="/login" className="text-primary hover:underline">
               Sign in
             </Link>
           </p>

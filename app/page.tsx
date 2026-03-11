@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HomeNav } from "@/components/marketing/HomeNav";
 
 const features = [
   {
@@ -35,58 +36,23 @@ const features = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
-      <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto">
-        <div className="text-2xl font-bold">
-          <span className="text-purple-400">Re</span>acquire
-        </div>
-        <div className="hidden md:flex items-center gap-1">
-          {features.map((f) => (
-            <Link
-              key={f.href}
-              href={f.href}
-              className="px-3 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition font-medium"
-            >
-              {f.title}
-            </Link>
-          ))}
-          <Link
-            href="/pricing"
-            className="px-3 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition font-medium"
-          >
-            Pricing
-          </Link>
-        </div>
-        <div className="flex gap-4">
-          <Link
-            href="/login"
-            className="px-4 py-2 text-sm text-slate-300 hover:text-white transition"
-          >
-            Sign In
-          </Link>
-          <Link
-            href="/register"
-            className="px-4 py-2 text-sm bg-purple-600 hover:bg-purple-500 rounded-lg transition font-medium"
-          >
-            Start Free
-          </Link>
-        </div>
-      </nav>
+    <main className="min-h-screen bg-background text-foreground">
+      <HomeNav />
 
       <section className="text-center px-8 py-24 max-w-4xl mx-auto">
-        <div className="inline-flex items-center gap-2 bg-purple-900/50 border border-purple-700 rounded-full px-4 py-1.5 text-sm text-purple-300 mb-8">
-          <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+        <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary rounded-full px-4 py-1.5 text-sm text-primary mb-8">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           0% failed first payments. Always.
         </div>
 
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
           Turn every trial into a{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+          <span className="text-primary">
             paying customer
           </span>
         </h1>
 
-        <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+        <p className="text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">
           Reacquire connects to your Stripe account in 5 minutes. Smart
           pre-authorization holds filter out bad cards before they waste your
           trial period — then AI optimizes your signup page to maximize
@@ -96,13 +62,13 @@ export default function HomePage() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href="/register"
-            className="px-8 py-4 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg font-semibold transition shadow-lg shadow-purple-900/50"
+            className="px-8 py-4 bg-primary text-primary-foreground border-2 border-black rounded-md text-lg font-bold transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Start Free Trial →
           </Link>
           <Link
             href="/login"
-            className="px-8 py-4 border border-slate-600 hover:border-slate-400 rounded-xl text-lg font-semibold transition"
+            className="px-8 py-4 border-2 border-black rounded-md text-lg font-bold hover:bg-muted transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Sign In
           </Link>
@@ -128,13 +94,13 @@ export default function HomePage() {
           ].map((item) => (
             <div
               key={item.stat}
-              className="bg-white/5 border border-white/10 rounded-2xl p-6"
+              className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6"
             >
-              <div className="text-4xl font-bold text-purple-400 mb-1">
+              <div className="text-4xl font-bold text-primary mb-1">
                 {item.stat}
               </div>
               <div className="font-semibold mb-1">{item.label}</div>
-              <div className="text-sm text-slate-400">{item.desc}</div>
+              <div className="text-sm text-muted-foreground">{item.desc}</div>
             </div>
           ))}
         </div>
@@ -146,7 +112,7 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Everything you need to convert trials
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             One platform for payment capture, fraud protection, AI optimization,
             and revenue analytics.
           </p>
@@ -157,14 +123,14 @@ export default function HomePage() {
             <Link
               key={f.href}
               href={f.href}
-              className="bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-white/10 rounded-2xl p-6 transition group"
+              className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-primary/10 hover:border-black rounded-2xl p-6 transition group"
             >
               <div className="text-3xl mb-3">{f.icon}</div>
-              <h3 className="text-lg font-semibold mb-2 group-hover:text-purple-300 transition">
+              <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition">
                 {f.title}
               </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
-              <div className="mt-4 text-purple-400 text-sm font-medium group-hover:text-purple-300 transition">
+              <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
+              <div className="mt-4 text-primary text-sm font-medium group-hover:text-primary transition">
                 Learn more →
               </div>
             </Link>
@@ -176,14 +142,14 @@ export default function HomePage() {
             <Link
               key={f.href}
               href={f.href}
-              className="bg-white/5 border border-white/10 hover:border-purple-500/50 hover:bg-white/10 rounded-2xl p-6 transition group"
+              className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:bg-primary/10 hover:border-black rounded-2xl p-6 transition group"
             >
               <div className="text-3xl mb-3">{f.icon}</div>
-              <h3 className="text-lg font-semibold mb-2 group-hover:text-purple-300 transition">
+              <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition">
                 {f.title}
               </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{f.desc}</p>
-              <div className="mt-4 text-purple-400 text-sm font-medium group-hover:text-purple-300 transition">
+              <p className="text-muted-foreground text-sm leading-relaxed">{f.desc}</p>
+              <div className="mt-4 text-primary text-sm font-medium group-hover:text-primary transition">
                 Learn more →
               </div>
             </Link>
@@ -197,13 +163,13 @@ export default function HomePage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to reacquire lost revenue?
           </h2>
-          <p className="text-slate-300 mb-8 text-lg">
+          <p className="text-foreground/80 mb-8 text-lg">
             Connect your Stripe account in 5 minutes and start converting more
             trials today.
           </p>
           <Link
             href="/register"
-            className="inline-block px-10 py-4 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg font-semibold transition shadow-lg shadow-purple-900/50"
+            className="inline-block px-10 py-4 bg-primary text-primary-foreground border-2 border-black rounded-md text-lg font-bold transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Get Started Free →
           </Link>

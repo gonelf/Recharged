@@ -46,24 +46,24 @@ const faqs = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <FeaturesNav activeHref="/pricing" />
 
       {/* Hero */}
       <section className="text-center px-8 py-20 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 bg-purple-900/50 border border-purple-700 rounded-full px-4 py-1.5 text-sm text-purple-300 mb-8">
-          <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+        <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary rounded-full px-4 py-1.5 text-sm text-primary mb-8">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
           Simple, transparent pricing
         </div>
 
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
           Pay a predictable{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+          <span className="text-primary">
             monthly fee
           </span>
         </h1>
 
-        <p className="text-xl text-slate-300 max-w-2xl mx-auto">
+        <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
           Priced by your MRR, not your usage. Start for $1/mo and only pay
           more as your revenue grows.
         </p>
@@ -71,18 +71,18 @@ export default function PricingPage() {
 
       {/* MRR tier table */}
       <section className="px-8 pb-16 max-w-2xl mx-auto">
-        <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+        <div className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
           {tiers.map((tier, i) => (
             <div
               key={tier.plan}
               className={`flex items-center justify-between px-6 py-4 ${
-                i < tiers.length - 1 ? "border-b border-white/10" : ""
+                i < tiers.length - 1 ? "border-b border-black/10" : ""
               }`}
             >
-              <span className="text-slate-300 font-medium">{tier.mrr}</span>
-              <span className="text-purple-400 font-bold text-lg">
+              <span className="text-foreground/80 font-medium">{tier.mrr}</span>
+              <span className="text-primary font-bold text-lg">
                 {tier.price}
-                <span className="text-slate-400 text-sm font-normal">/mo</span>
+                <span className="text-muted-foreground text-sm font-normal">/mo</span>
               </span>
             </div>
           ))}
@@ -91,8 +91,8 @@ export default function PricingPage() {
         {/* Perks */}
         <div className="mt-6 grid grid-cols-2 gap-3">
           {perks.map((perk) => (
-            <div key={perk} className="flex items-center gap-2 text-sm text-slate-300">
-              <span className="text-purple-400 shrink-0">✓</span>
+            <div key={perk} className="flex items-center gap-2 text-sm text-foreground/80">
+              <span className="text-primary shrink-0">✓</span>
               {perk}
             </div>
           ))}
@@ -101,11 +101,11 @@ export default function PricingPage() {
         <div className="mt-8 text-center">
           <Link
             href="/register"
-            className="inline-block px-10 py-4 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg font-semibold transition shadow-lg shadow-purple-900/50"
+            className="inline-block px-10 py-4 bg-primary text-primary-foreground border-2 border-black rounded-md text-lg font-bold transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
           >
             Start Free Trial →
           </Link>
-          <p className="mt-3 text-slate-500 text-sm">
+          <p className="mt-3 text-muted-foreground text-sm">
             14-day free trial. No credit card required.
           </p>
         </div>
@@ -113,11 +113,11 @@ export default function PricingPage() {
 
       {/* What's included */}
       <section className="px-8 py-16 max-w-4xl mx-auto">
-        <div className="bg-white/5 border border-white/10 rounded-3xl p-10 text-center">
+        <div className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-10 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
             Every feature. Every tier.
           </h2>
-          <p className="text-slate-400 mb-10 max-w-xl mx-auto">
+          <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
             No feature gating, no add-ons. Every plan includes everything Reacquire offers.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-left">
@@ -131,7 +131,7 @@ export default function PricingPage() {
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-3">
                 <span className="text-2xl">{item.icon}</span>
-                <span className="text-sm font-medium text-slate-300">
+                <span className="text-sm font-medium text-foreground/80">
                   {item.label}
                 </span>
               </div>
@@ -146,7 +146,7 @@ export default function PricingPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Frequently asked questions
           </h2>
-          <p className="text-slate-400 text-lg">
+          <p className="text-muted-foreground text-lg">
             Everything you need to know before you start.
           </p>
         </div>
@@ -155,10 +155,10 @@ export default function PricingPage() {
           {faqs.map((faq) => (
             <div
               key={faq.q}
-              className="bg-white/5 border border-white/10 rounded-2xl p-6"
+              className="border-2 border-black bg-card rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-6"
             >
               <h3 className="font-semibold mb-2">{faq.q}</h3>
-              <p className="text-slate-400 text-sm leading-relaxed">{faq.a}</p>
+              <p className="text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
             </div>
           ))}
         </div>
@@ -170,20 +170,20 @@ export default function PricingPage() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Start your free trial today
           </h2>
-          <p className="text-slate-300 mb-8 text-lg">
+          <p className="text-foreground/80 mb-8 text-lg">
             Connect your Stripe account in 5 minutes and start converting more
             trials — for as little as $1/mo.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/register"
-              className="px-10 py-4 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg font-semibold transition shadow-lg shadow-purple-900/50"
+              className="px-10 py-4 bg-primary text-primary-foreground border-2 border-black rounded-md text-lg font-bold transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
             >
               Get Started Free →
             </Link>
             <Link
               href="mailto:sales@reacquire.io"
-              className="px-10 py-4 border border-slate-600 hover:border-slate-400 rounded-xl text-lg font-semibold transition"
+              className="px-10 py-4 border-2 border-black rounded-md text-lg font-bold hover:bg-muted transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-[4px] active:translate-y-[4px]"
             >
               Talk to Sales
             </Link>
