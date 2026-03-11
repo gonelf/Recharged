@@ -151,20 +151,20 @@ function SettingsContent() {
               plan: "STARTER",
               name: "Starter",
               price: "$49/mo",
-              features: ["Up to 500 trials/mo", "AI optimization", "Fraud shield"],
+              features: ["Up to 500 active trials", "Pre-auth capture", "Dispute protection"],
             },
             {
               plan: "GROWTH",
               name: "Growth",
               price: "$149/mo",
-              features: ["Up to 2,000 trials/mo", "Priority support", "Custom webhook"],
+              features: ["Up to 5,000 active trials", "AI optimization", "Backup payments"],
               popular: true,
             },
             {
               plan: "ENTERPRISE",
               name: "Enterprise",
               price: "$499/mo",
-              features: ["Unlimited trials", "Dedicated support", "SLA guarantee"],
+              features: ["Unlimited trials", "Dedicated account manager", "SLA guarantee"],
             },
           ].map((tier) => (
             <div
