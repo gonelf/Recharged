@@ -70,9 +70,12 @@ model VerificationToken {
 
 enum RechargedPlan {
   FREE
-  STARTER
-  GROWTH
-  ENTERPRISE
+  MRR_5K
+  MRR_20K
+  MRR_50K
+  MRR_150K
+  MRR_250K
+  MRR_PLUS
 }
 
 // ─── Stripe Connect Accounts ──────────────────────────────────────────────────

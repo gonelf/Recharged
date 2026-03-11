@@ -145,50 +145,29 @@ function SettingsContent() {
           Upgrade to unlock higher trial volumes and advanced features.
         </p>
 
-        <div className="grid grid-cols-3 gap-4 mb-6">
+        <div className="space-y-2 mb-6">
           {[
-            {
-              plan: "STARTER",
-              name: "Starter",
-              price: "$49/mo",
-              features: ["Up to 500 trials/mo", "AI optimization", "Fraud shield"],
-            },
-            {
-              plan: "GROWTH",
-              name: "Growth",
-              price: "$149/mo",
-              features: ["Up to 2,000 trials/mo", "Priority support", "Custom webhook"],
-              popular: true,
-            },
-            {
-              plan: "ENTERPRISE",
-              name: "Enterprise",
-              price: "$499/mo",
-              features: ["Unlimited trials", "Dedicated support", "SLA guarantee"],
-            },
+            { plan: "MRR_5K",   mrr: "$0 – $5k MRR",      price: "$1/mo" },
+            { plan: "MRR_20K",  mrr: "$5k – $20k MRR",    price: "$47/mo" },
+            { plan: "MRR_50K",  mrr: "$20k – $50k MRR",   price: "$97/mo" },
+            { plan: "MRR_150K", mrr: "$50k – $150k MRR",  price: "$297/mo" },
+            { plan: "MRR_250K", mrr: "$150k – $250k MRR", price: "$497/mo" },
+            { plan: "MRR_PLUS", mrr: "$250k+ MRR",        price: "$997/mo" },
           ].map((tier) => (
             <div
               key={tier.plan}
-              className={`border rounded-xl p-4 ${tier.popular ? "border-purple-400 ring-1 ring-purple-200" : "border-slate-200"}`}
+              className="flex items-center justify-between border border-slate-200 rounded-xl px-4 py-3"
             >
-              {tier.popular && (
-                <div className="text-xs text-purple-600 font-medium mb-2">Most Popular</div>
-              )}
-              <div className="font-semibold text-slate-900 mb-0.5">{tier.name}</div>
-              <div className="text-2xl font-bold text-purple-600 mb-3">{tier.price}</div>
-              <ul className="space-y-1 mb-4">
-                {tier.features.map((f) => (
-                  <li key={f} className="text-xs text-slate-600 flex items-center gap-1">
-                    <span className="text-green-500">✓</span> {f}
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => upgradePlan(tier.plan)}
-                className="w-full py-1.5 text-xs font-medium border border-purple-300 text-purple-600 hover:bg-purple-50 rounded-lg transition"
-              >
-                Choose {tier.name}
-              </button>
+              <span className="text-sm text-slate-700 font-medium">{tier.mrr}</span>
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-bold text-purple-600">{tier.price}</span>
+                <button
+                  onClick={() => upgradePlan(tier.plan)}
+                  className="text-xs font-medium border border-purple-300 text-purple-600 hover:bg-purple-50 rounded-lg px-3 py-1.5 transition"
+                >
+                  Select
+                </button>
+              </div>
             </div>
           ))}
         </div>

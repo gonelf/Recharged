@@ -50,6 +50,12 @@ export default function HomePage() {
               {f.title}
             </Link>
           ))}
+          <Link
+            href="/pricing"
+            className="px-3 py-1.5 text-sm text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition font-medium"
+          >
+            Pricing
+          </Link>
         </div>
         <div className="flex gap-4">
           <Link

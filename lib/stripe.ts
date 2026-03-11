@@ -19,9 +19,13 @@ export function getConnectedStripe(accessToken: string): Stripe {
   });
 }
 
-// Recharged subscription price IDs (set these in your Stripe dashboard)
+// Recharged subscription price IDs — keyed by RechargedPlan enum value.
+// Each tier is priced by the customer's MRR (Monthly Recurring Revenue).
 export const RECHARGED_PRICES = {
-  STARTER: process.env.STRIPE_PRICE_STARTER ?? "price_starter",
-  GROWTH: process.env.STRIPE_PRICE_GROWTH ?? "price_growth",
-  ENTERPRISE: process.env.STRIPE_PRICE_ENTERPRISE ?? "price_enterprise",
+  MRR_5K:   process.env.STRIPE_PRICE_MRR_5K   ?? "price_mrr_5k",   // $0–$5k MRR   → $1/mo
+  MRR_20K:  process.env.STRIPE_PRICE_MRR_20K  ?? "price_mrr_20k",  // $5k–$20k MRR  → $47/mo
+  MRR_50K:  process.env.STRIPE_PRICE_MRR_50K  ?? "price_mrr_50k",  // $20k–$50k MRR → $97/mo
+  MRR_150K: process.env.STRIPE_PRICE_MRR_150K ?? "price_mrr_150k", // $50k–$150k MRR→ $297/mo
+  MRR_250K: process.env.STRIPE_PRICE_MRR_250K ?? "price_mrr_250k", // $150k–$250k MRR→$497/mo
+  MRR_PLUS: process.env.STRIPE_PRICE_MRR_PLUS ?? "price_mrr_plus", // $250k+ MRR    → $997/mo
 } as const;

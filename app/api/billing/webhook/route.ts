@@ -21,9 +21,12 @@ export async function POST(request: NextRequest) {
   }
 
   const planMap: Record<string, string> = {
-    [process.env.STRIPE_PRICE_STARTER ?? "price_starter"]: "STARTER",
-    [process.env.STRIPE_PRICE_GROWTH ?? "price_growth"]: "GROWTH",
-    [process.env.STRIPE_PRICE_ENTERPRISE ?? "price_enterprise"]: "ENTERPRISE",
+    [process.env.STRIPE_PRICE_MRR_5K   ?? "price_mrr_5k"]:   "MRR_5K",
+    [process.env.STRIPE_PRICE_MRR_20K  ?? "price_mrr_20k"]:  "MRR_20K",
+    [process.env.STRIPE_PRICE_MRR_50K  ?? "price_mrr_50k"]:  "MRR_50K",
+    [process.env.STRIPE_PRICE_MRR_150K ?? "price_mrr_150k"]: "MRR_150K",
+    [process.env.STRIPE_PRICE_MRR_250K ?? "price_mrr_250k"]: "MRR_250K",
+    [process.env.STRIPE_PRICE_MRR_PLUS ?? "price_mrr_plus"]: "MRR_PLUS",
   };
 
   switch (event.type) {
@@ -37,7 +40,7 @@ export async function POST(request: NextRequest) {
         typeof sub.items.data[0].price === "string"
           ? sub.items.data[0].price
           : sub.items.data[0].price.id;
-      const plan = planMap[priceId] ?? "STARTER";
+      const plan = planMap[priceId] ?? "MRR_5K";
 
       await prisma.user.update({
         where: { id: userId },

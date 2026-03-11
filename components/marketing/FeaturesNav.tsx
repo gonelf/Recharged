@@ -6,6 +6,7 @@ const features = [
   { href: "/features/dispute-protection", label: "Dispute Protection" },
   { href: "/features/analytics", label: "Analytics" },
   { href: "/features/backup-payment-methods", label: "Backup Payments" },
+  { href: "/pricing", label: "Pricing" },
 ];
 
 export function FeaturesNav({ activeHref }: { activeHref?: string }) {
