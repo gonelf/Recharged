@@ -38,7 +38,7 @@ function LoginContent() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="text-2xl font-bold">
-            <span className="text-purple-600">Re</span>charged
+            <span className="text-purple-600">Re</span>acquire
           </Link>
           <p className="text-slate-600 mt-2">Sign in to your account</p>
         </div>

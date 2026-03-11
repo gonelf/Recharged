@@ -8,7 +8,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="text-2xl font-bold">
-            <span className="text-purple-600">Re</span>charged
+            <span className="text-purple-600">Re</span>acquire
           </Link>
           <p className="text-slate-600 mt-2">Create your account</p>
         </div>
@@ -17,7 +17,7 @@ export default function RegisterPage() {
           <div className="mb-6 text-center">
             <p className="text-slate-700 text-sm">
               Connect your Stripe account to get started. We&apos;ll create your
-              Recharged account automatically.
+              Reacquire account automatically.
             </p>
           </div>
 

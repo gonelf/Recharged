@@ -26,7 +26,7 @@ export default async function DashboardLayout({
       <aside className="w-60 bg-white border-r border-slate-200 flex flex-col">
         <div className="px-6 py-5 border-b border-slate-200">
           <Link href="/dashboard" className="text-xl font-bold">
-            <span className="text-purple-600">Re</span>charged
+            <span className="text-purple-600">Re</span>acquire
           </Link>
         </div>
 
