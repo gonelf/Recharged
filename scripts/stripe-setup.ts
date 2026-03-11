@@ -37,8 +37,8 @@ const PLANS = [
     productName: "Reacquire – $5k–$20k MRR",
     productDescription:
       "For teams with $5k–$20k monthly recurring revenue. All Reacquire features included.",
-    unitAmount: 4700,  // $47.00
-    nickname: "$5k–$20k MRR – $47/mo",
+    unitAmount: 3900,  // $39.00
+    nickname: "$5k–$20k MRR – $39/mo",
     metadata: { plan: "MRR_20K", mrrBand: "5k-20k" },
   },
   {
@@ -46,8 +46,8 @@ const PLANS = [
     productName: "Reacquire – $20k–$50k MRR",
     productDescription:
       "For teams with $20k–$50k monthly recurring revenue. All Reacquire features included.",
-    unitAmount: 9700,  // $97.00
-    nickname: "$20k–$50k MRR – $97/mo",
+    unitAmount: 8900,  // $89.00
+    nickname: "$20k–$50k MRR – $89/mo",
     metadata: { plan: "MRR_50K", mrrBand: "20k-50k" },
   },
   {
@@ -55,8 +55,8 @@ const PLANS = [
     productName: "Reacquire – $50k–$150k MRR",
     productDescription:
       "For teams with $50k–$150k monthly recurring revenue. All Reacquire features included.",
-    unitAmount: 29700, // $297.00
-    nickname: "$50k–$150k MRR – $297/mo",
+    unitAmount: 28900, // $289.00
+    nickname: "$50k–$150k MRR – $289/mo",
     metadata: { plan: "MRR_150K", mrrBand: "50k-150k" },
   },
   {
@@ -64,8 +64,8 @@ const PLANS = [
     productName: "Reacquire – $150k–$250k MRR",
     productDescription:
       "For teams with $150k–$250k monthly recurring revenue. All Reacquire features included.",
-    unitAmount: 49700, // $497.00
-    nickname: "$150k–$250k MRR – $497/mo",
+    unitAmount: 48900, // $489.00
+    nickname: "$150k–$250k MRR – $489/mo",
     metadata: { plan: "MRR_250K", mrrBand: "150k-250k" },
   },
   {
@@ -73,8 +73,8 @@ const PLANS = [
     productName: "Reacquire – $250k+ MRR",
     productDescription:
       "For teams with $250k+ monthly recurring revenue. All Reacquire features included.",
-    unitAmount: 99700, // $997.00
-    nickname: "$250k+ MRR – $997/mo",
+    unitAmount: 98900, // $989.00
+    nickname: "$250k+ MRR – $989/mo",
     metadata: { plan: "MRR_PLUS", mrrBand: "250k+" },
   },
 ] as const;
