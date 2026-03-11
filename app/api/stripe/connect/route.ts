@@ -3,12 +3,19 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAuthSession } from "@/lib/auth";
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-const STRIPE_CLIENT_ID = process.env.STRIPE_CLIENT_ID!;
 
 // GET /api/stripe/connect – redirect to Stripe OAuth
 // ?mode=auth  → authentication flow (no session required, creates/finds user)
 // default     → connect an additional account (session required)
 export async function GET(request: NextRequest) {
+  const STRIPE_CLIENT_ID = process.env.STRIPE_CLIENT_ID;
+  if (!STRIPE_CLIENT_ID) {
+    return NextResponse.json(
+      { error: "Stripe Connect is not configured (missing STRIPE_CLIENT_ID)" },
+      { status: 500 }
+    );
+  }
+
   const { searchParams } = new URL(request.url);
   const mode = searchParams.get("mode");
 
