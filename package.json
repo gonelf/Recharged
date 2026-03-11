@@ -29,6 +29,7 @@
     "@radix-ui/react-toast": "^1.2.6",
     "@stripe/react-stripe-js": "^3.5.0",
     "@stripe/stripe-js": "^5.5.0",
+    "@vercel/analytics": "^2.0.0",
     "autoprefixer": "^10.4.27",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
