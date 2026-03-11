@@ -3,11 +3,11 @@ import { FeaturesNav } from "@/components/marketing/FeaturesNav";
 
 const tiers = [
   { mrr: "$0 – $5k MRR",      price: "$1",   plan: "MRR_5K" },
-  { mrr: "$5k – $20k MRR",    price: "$47",  plan: "MRR_20K" },
-  { mrr: "$20k – $50k MRR",   price: "$97",  plan: "MRR_50K" },
-  { mrr: "$50k – $150k MRR",  price: "$297", plan: "MRR_150K" },
-  { mrr: "$150k – $250k MRR", price: "$497", plan: "MRR_250K" },
-  { mrr: "$250k+ MRR",        price: "$997", plan: "MRR_PLUS" },
+  { mrr: "$5k – $20k MRR",    price: "$39",  plan: "MRR_20K" },
+  { mrr: "$20k – $50k MRR",   price: "$89",  plan: "MRR_50K" },
+  { mrr: "$50k – $150k MRR",  price: "$289", plan: "MRR_150K" },
+  { mrr: "$150k – $250k MRR", price: "$489", plan: "MRR_250K" },
+  { mrr: "$250k+ MRR",        price: "$989", plan: "MRR_PLUS" },
 ];
 
 const perks = [
