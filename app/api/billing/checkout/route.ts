@@ -8,7 +8,7 @@ import { z } from "zod";
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 const schema = z.object({
-  plan: z.enum(["STARTER", "GROWTH", "ENTERPRISE"]),
+  plan: z.enum(["MRR_5K", "MRR_20K", "MRR_50K", "MRR_150K", "MRR_250K", "MRR_PLUS"]),
 });
 
 // POST /api/billing/checkout – create Stripe Checkout session for Recharged subscription

@@ -1,92 +1,46 @@
 import Link from "next/link";
 import { FeaturesNav } from "@/components/marketing/FeaturesNav";
 
-const plans = [
-  {
-    name: "Starter",
-    price: "$49",
-    period: "/mo",
-    description: "Perfect for early-stage SaaS with up to 500 active trials.",
-    cta: "Start Free Trial",
-    href: "/register",
-    highlight: false,
-    features: [
-      "Up to 500 active trials",
-      "Pre-auth payment capture",
-      "Dispute protection",
-      "Basic analytics dashboard",
-      "Stripe Connect integration",
-      "Email support",
-    ],
-  },
-  {
-    name: "Growth",
-    price: "$149",
-    period: "/mo",
-    description: "For scaling SaaS teams that need AI and advanced recovery.",
-    cta: "Start Free Trial",
-    href: "/register",
-    highlight: true,
-    badge: "Most Popular",
-    features: [
-      "Up to 5,000 active trials",
-      "Pre-auth payment capture",
-      "Dispute protection",
-      "AI signup page optimization",
-      "Backup payment methods",
-      "Full analytics + cohort analysis",
-      "Stripe Connect integration",
-      "Priority email & chat support",
-    ],
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    period: "",
-    description:
-      "For high-volume teams with custom workflows and dedicated support.",
-    cta: "Contact Sales",
-    href: "mailto:sales@reacquire.io",
-    highlight: false,
-    features: [
-      "Unlimited active trials",
-      "Pre-auth payment capture",
-      "Dispute protection",
-      "AI signup page optimization",
-      "Backup payment methods",
-      "Advanced analytics + custom reports",
-      "Multi-account Stripe support",
-      "SLA guarantee",
-      "Dedicated account manager",
-      "Custom integrations",
-    ],
-  },
+const tiers = [
+  { mrr: "$0 – $5k MRR",      price: "$1",   plan: "MRR_5K" },
+  { mrr: "$5k – $20k MRR",    price: "$47",  plan: "MRR_20K" },
+  { mrr: "$20k – $50k MRR",   price: "$97",  plan: "MRR_50K" },
+  { mrr: "$50k – $150k MRR",  price: "$297", plan: "MRR_150K" },
+  { mrr: "$150k – $250k MRR", price: "$497", plan: "MRR_250K" },
+  { mrr: "$250k+ MRR",        price: "$997", plan: "MRR_PLUS" },
+];
+
+const perks = [
+  "No transaction fees",
+  "All features included on every tier",
+  "Cancel anytime",
+  "Five-minute setup",
 ];
 
 const faqs = [
   {
+    q: "How do you determine my MRR tier?",
+    a: "MRR is your total monthly subscription revenue from active paying customers. You self-select the tier that matches your current MRR — we trust you to upgrade as you grow.",
+  },
+  {
+    q: "What if my MRR changes mid-month?",
+    a: "You can upgrade or downgrade at any time from your settings. Changes take effect at the start of your next billing cycle.",
+  },
+  {
     q: "Is there a free trial?",
-    a: "Yes — every plan starts with a 14-day free trial. No credit card required to get started.",
+    a: "Yes — every tier starts with a 14-day free trial. No credit card required.",
   },
   {
-    q: "What counts as an 'active trial'?",
-    a: "An active trial is any trial period that is currently running in your Stripe account and managed by Reacquire. Trials that have converted or churned don't count.",
+    q: "Are there transaction fees or revenue share?",
+    a: "None. Reacquire charges a flat monthly fee based on your MRR band. We never take a percentage of the revenue you recover.",
   },
   {
-    q: "Can I switch plans later?",
-    a: "Absolutely. You can upgrade or downgrade at any time from your dashboard. Changes take effect at the start of your next billing cycle.",
-  },
-  {
-    q: "Do you charge a percentage of revenue?",
-    a: "No. Reacquire charges a flat monthly fee — we never take a cut of your revenue or recovered payments.",
+    q: "Do all tiers include every feature?",
+    a: "Yes. Pre-auth payment capture, dispute protection, AI optimization, backup payment methods, and full analytics are included on every tier — no feature gating.",
   },
   {
     q: "What payment methods do you support?",
     a: "Reacquire works with any payment method supported by Stripe, including cards, ACH, and SEPA.",
-  },
-  {
-    q: "Is my Stripe data safe?",
-    a: "Yes. We connect via Stripe's official OAuth (Stripe Connect) and never store raw card data. All sensitive payment data stays within Stripe's PCI-compliant infrastructure.",
   },
 ];
 
@@ -103,97 +57,77 @@ export default function PricingPage() {
         </div>
 
         <h1 className="text-5xl md:text-6xl font-extrabold leading-tight mb-6">
-          Pay for results,{" "}
+          Pay a predictable{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-            not complexity
+            monthly fee
           </span>
         </h1>
 
         <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-          Flat monthly pricing. No revenue share. No hidden fees. Start free and
-          upgrade as you grow.
+          Priced by your MRR, not your usage. Start for $1/mo and only pay
+          more as your revenue grows.
         </p>
       </section>
 
-      {/* Pricing cards */}
-      <section className="px-8 pb-24 max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-          {plans.map((plan) => (
+      {/* MRR tier table */}
+      <section className="px-8 pb-16 max-w-2xl mx-auto">
+        <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+          {tiers.map((tier, i) => (
             <div
-              key={plan.name}
-              className={`relative rounded-2xl p-8 flex flex-col ${
-                plan.highlight
-                  ? "bg-purple-600/20 border-2 border-purple-500 shadow-xl shadow-purple-900/40"
-                  : "bg-white/5 border border-white/10"
+              key={tier.plan}
+              className={`flex items-center justify-between px-6 py-4 ${
+                i < tiers.length - 1 ? "border-b border-white/10" : ""
               }`}
             >
-              {plan.badge && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                  <span className="bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    {plan.badge}
-                  </span>
-                </div>
-              )}
-
-              <div className="mb-6">
-                <h2 className="text-lg font-bold mb-1">{plan.name}</h2>
-                <div className="flex items-end gap-1 mb-3">
-                  <span className="text-4xl font-extrabold">{plan.price}</span>
-                  {plan.period && (
-                    <span className="text-slate-400 text-sm mb-1">
-                      {plan.period}
-                    </span>
-                  )}
-                </div>
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  {plan.description}
-                </p>
-              </div>
-
-              <Link
-                href={plan.href}
-                className={`block text-center py-3 rounded-xl font-semibold text-sm transition mb-8 ${
-                  plan.highlight
-                    ? "bg-purple-500 hover:bg-purple-400 text-white shadow-lg shadow-purple-900/50"
-                    : "bg-white/10 hover:bg-white/20 text-white"
-                }`}
-              >
-                {plan.cta}
-              </Link>
-
-              <ul className="space-y-3 flex-1">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-2.5 text-sm">
-                    <span className="text-purple-400 mt-0.5 shrink-0">✓</span>
-                    <span className="text-slate-300">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              <span className="text-slate-300 font-medium">{tier.mrr}</span>
+              <span className="text-purple-400 font-bold text-lg">
+                {tier.price}
+                <span className="text-slate-400 text-sm font-normal">/mo</span>
+              </span>
             </div>
           ))}
         </div>
 
-        <p className="text-center text-slate-500 text-sm mt-8">
-          All plans include a 14-day free trial. No credit card required.
-        </p>
+        {/* Perks */}
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          {perks.map((perk) => (
+            <div key={perk} className="flex items-center gap-2 text-sm text-slate-300">
+              <span className="text-purple-400 shrink-0">✓</span>
+              {perk}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            href="/register"
+            className="inline-block px-10 py-4 bg-purple-600 hover:bg-purple-500 rounded-xl text-lg font-semibold transition shadow-lg shadow-purple-900/50"
+          >
+            Start Free Trial →
+          </Link>
+          <p className="mt-3 text-slate-500 text-sm">
+            14-day free trial. No credit card required.
+          </p>
+        </div>
       </section>
 
-      {/* Feature comparison callout */}
+      {/* What's included */}
       <section className="px-8 py-16 max-w-4xl mx-auto">
         <div className="bg-white/5 border border-white/10 rounded-3xl p-10 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-3">
-            Every plan includes the essentials
+            Every feature. Every tier.
           </h2>
           <p className="text-slate-400 mb-10 max-w-xl mx-auto">
-            No matter which plan you choose, you get the core features that make
-            Reacquire work.
+            No feature gating, no add-ons. Every plan includes everything Reacquire offers.
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-left">
             {[
-              { icon: "💳", label: "Pre-auth capture" },
+              { icon: "💳", label: "Pre-auth payment capture" },
               { icon: "🛡️", label: "Dispute protection" },
-              { icon: "🔗", label: "Stripe Connect" },
-              { icon: "📊", label: "Analytics dashboard" },
+              { icon: "🤖", label: "AI signup optimization" },
+              { icon: "🔄", label: "Backup payment methods" },
+              { icon: "📊", label: "Full analytics & cohorts" },
+              { icon: "🔗", label: "Stripe Connect integration" },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-3">
                 <span className="text-2xl">{item.icon}</span>
@@ -237,8 +171,8 @@ export default function PricingPage() {
             Start your free trial today
           </h2>
           <p className="text-slate-300 mb-8 text-lg">
-            Connect your Stripe account in 5 minutes and see why teams trust
-            Reacquire to convert more trials.
+            Connect your Stripe account in 5 minutes and start converting more
+            trials — for as little as $1/mo.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
