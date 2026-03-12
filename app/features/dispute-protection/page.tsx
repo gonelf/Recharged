@@ -1,5 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FeaturesNav } from "@/components/marketing/FeaturesNav";
+
+const PAGE_URL = "https://reacquire.io/features/dispute-protection";
+
+export const metadata: Metadata = {
+  title: "Dispute Protection – Block Fraud Before It Becomes a Chargeback",
+  description:
+    "Real-time fraud screening, custom blocklists, and Stripe Radar integration stop chargebacks before they reach your Stripe account. 3× fewer disputes.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    url: PAGE_URL,
+    title: "Dispute Protection – Reacquire | Block Fraud Before It Becomes a Chargeback",
+    description:
+      "Real-time fraud screening and blocklists stop chargebacks before they ever reach your Stripe account. 99% of fraud blocked at signup.",
+  },
+};
 
 const steps = [
   {

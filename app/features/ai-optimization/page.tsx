@@ -1,5 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FeaturesNav } from "@/components/marketing/FeaturesNav";
+
+const PAGE_URL = "https://reacquire.io/features/ai-optimization";
+
+export const metadata: Metadata = {
+  title: "AI Optimization – AI-Powered Signup Page A/B Testing",
+  description:
+    "Gemini AI generates, tests, and promotes the highest-converting versions of your trial signup page — hands-free. Average 57% trial conversion rate.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    url: PAGE_URL,
+    title: "AI Optimization – Reacquire | AI-Powered Signup Page A/B Testing",
+    description:
+      "Gemini AI auto-generates and A/B tests signup page variants. The winner gets promoted automatically. 57% average trial conversion rate.",
+  },
+};
 
 const steps = [
   {

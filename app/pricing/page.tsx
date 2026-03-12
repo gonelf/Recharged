@@ -1,13 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FeaturesNav } from "@/components/marketing/FeaturesNav";
 
+const PAGE_URL = "https://reacquire.io/pricing";
+
+export const metadata: Metadata = {
+  title: "Pricing – MRR-Based Flat-Fee Plans Starting at $1/mo",
+  description:
+    "Start for $1/mo. Reacquire charges a flat monthly fee based on your MRR — no transaction fees, no revenue share. Every feature included on every tier.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    url: PAGE_URL,
+    title: "Reacquire Pricing – MRR-Based Flat-Fee Plans Starting at $1/mo",
+    description:
+      "Start for $1/mo. No transaction fees, no revenue share. All features included on every tier. 14-day free trial.",
+  },
+};
+
 const tiers = [
-  { mrr: "$0 – $5k MRR",      price: "$1",   plan: "MRR_5K" },
-  { mrr: "$5k – $20k MRR",    price: "$39",  plan: "MRR_20K" },
-  { mrr: "$20k – $50k MRR",   price: "$89",  plan: "MRR_50K" },
-  { mrr: "$50k – $150k MRR",  price: "$289", plan: "MRR_150K" },
+  { mrr: "$0 – $5k MRR", price: "$1", plan: "MRR_5K" },
+  { mrr: "$5k – $20k MRR", price: "$39", plan: "MRR_20K" },
+  { mrr: "$20k – $50k MRR", price: "$89", plan: "MRR_50K" },
+  { mrr: "$50k – $150k MRR", price: "$289", plan: "MRR_150K" },
   { mrr: "$150k – $250k MRR", price: "$489", plan: "MRR_250K" },
-  { mrr: "$250k+ MRR",        price: "$989", plan: "MRR_PLUS" },
+  { mrr: "$250k+ MRR", price: "$989", plan: "MRR_PLUS" },
 ];
 
 const perks = [
@@ -44,9 +60,26 @@ const faqs = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+};
+
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <FeaturesNav activeHref="/pricing" />
 
       {/* Hero */}
@@ -75,9 +108,8 @@ export default function PricingPage() {
           {tiers.map((tier, i) => (
             <div
               key={tier.plan}
-              className={`flex items-center justify-between px-6 py-4 ${
-                i < tiers.length - 1 ? "border-b border-black/10" : ""
-              }`}
+              className={`flex items-center justify-between px-6 py-4 ${i < tiers.length - 1 ? "border-b border-black/10" : ""
+                }`}
             >
               <span className="text-foreground/80 font-medium">{tier.mrr}</span>
               <span className="text-primary font-bold text-lg">

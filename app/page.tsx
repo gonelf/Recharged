@@ -1,5 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HomeNav } from "@/components/marketing/HomeNav";
+
+const BASE_URL = "https://reacquire.io";
+
+export const metadata: Metadata = {
+  title: "Turn Every Trial into a Paying Customer",
+  description:
+    "Connect your Stripe account in 5 minutes. Pre-auth holds eliminate failed first payments. AI-optimized signup pages maximize your trial-to-paid conversion rate.",
+  alternates: { canonical: BASE_URL },
+  openGraph: {
+    url: BASE_URL,
+    title: "Reacquire – Turn Every Trial into a Paying Customer",
+    description:
+      "Connect your Stripe account in 5 minutes. Pre-auth holds eliminate failed first payments. AI-optimized signup pages maximize your trial-to-paid conversion rate.",
+  },
+};
 
 const features = [
   {
@@ -34,9 +50,27 @@ const features = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Reacquire",
+  url: BASE_URL,
+  description:
+    "Reacquire turns free trials into paying customers with Stripe pre-authorization, AI optimization, dispute protection, and backup payment methods.",
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "sales@reacquire.io",
+    contactType: "sales",
+  },
+};
+
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HomeNav />
 
       <section className="text-center px-8 py-24 max-w-4xl mx-auto">

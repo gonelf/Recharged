@@ -1,5 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FeaturesNav } from "@/components/marketing/FeaturesNav";
+
+const PAGE_URL = "https://reacquire.io/features/analytics";
+
+export const metadata: Metadata = {
+  title: "Analytics – Trial-to-Paid Funnel & Revenue Metrics",
+  description:
+    "Real-time visibility into your trial conversion funnel, MRR growth, churn, and cohort analysis — all powered by live Stripe data. 30+ metrics tracked.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    url: PAGE_URL,
+    title: "Analytics – Reacquire | Trial-to-Paid Funnel & Revenue Metrics",
+    description:
+      "Real-time trial-to-paid funnel metrics, MRR tracking, cohort analysis, and churn data — all powered by live Stripe data.",
+  },
+};
 
 const steps = [
   {

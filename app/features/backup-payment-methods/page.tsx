@@ -1,5 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FeaturesNav } from "@/components/marketing/FeaturesNav";
+
+const PAGE_URL = "https://reacquire.io/features/backup-payment-methods";
+
+export const metadata: Metadata = {
+  title: "Backup Payments – Recover 40% of Failed Payments Automatically",
+  description:
+    "Let customers save a backup card at signup. When the primary card declines, Reacquire automatically retries — recovering 40% of failed payments without lifting a finger.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    url: PAGE_URL,
+    title: "Backup Payments – Reacquire | Recover 40% of Failed Payments Automatically",
+    description:
+      "Automatic backup card retry recovers 40% of failed payments. Charged within 5 seconds of primary card decline. No manual intervention needed.",
+  },
+};
 
 const steps = [
   {

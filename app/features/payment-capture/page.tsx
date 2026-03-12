@@ -1,5 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { FeaturesNav } from "@/components/marketing/FeaturesNav";
+
+const PAGE_URL = "https://reacquire.io/features/payment-capture";
+
+export const metadata: Metadata = {
+  title: "Payment Capture – Zero Failed First Payments",
+  description:
+    "Stripe pre-authorization holds validate every card at trial signup. Only real, chargeable payment methods convert — so your first payment always succeeds.",
+  alternates: { canonical: PAGE_URL },
+  openGraph: {
+    url: PAGE_URL,
+    title: "Payment Capture – Reacquire | Zero Failed First Payments",
+    description:
+      "Pre-auth holds validate every card before your trial begins. 0% failed first payments. 5-minute Stripe setup.",
+  },
+};
 
 const steps = [
   {
