@@ -5,13 +5,13 @@ import { HomeNav } from "@/components/marketing/HomeNav";
 const BASE_URL = "https://reacquire.io";
 
 export const metadata: Metadata = {
-  title: "Turn Every Trial into a Paying Customer",
+  title: "Turn 2x More Trials into Paid Users – Zero Code Changes",
   description:
     "Connect your Stripe account in 5 minutes. Pre-auth holds eliminate failed first payments. AI-optimized signup pages maximize your trial-to-paid conversion rate.",
   alternates: { canonical: BASE_URL },
   openGraph: {
     url: BASE_URL,
-    title: "Reacquire – Turn Every Trial into a Paying Customer",
+    title: "Reacquire – Turn 2x More Trials into Paid Users",
     description:
       "Connect your Stripe account in 5 minutes. Pre-auth holds eliminate failed first payments. AI-optimized signup pages maximize your trial-to-paid conversion rate.",
   },
@@ -55,13 +55,32 @@ const jsonLd = {
   "@type": "Organization",
   name: "Reacquire",
   url: BASE_URL,
+  logo: `${BASE_URL}/og-image.png`,
   description:
     "Reacquire turns free trials into paying customers with Stripe pre-authorization, AI optimization, dispute protection, and backup payment methods.",
+  foundingDate: "2024",
+  areaServed: "Worldwide",
   contactPoint: {
     "@type": "ContactPoint",
     email: "sales@reacquire.io",
     contactType: "sales",
+    availableLanguage: "English",
   },
+  makesOffer: [
+    {
+      "@type": "Offer",
+      name: "Reacquire Starter",
+      description: "Full access to all Reacquire features for SaaS teams with up to $5k MRR.",
+      price: "1",
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "1",
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+    },
+  ],
 };
 
 export default function HomePage() {
@@ -80,10 +99,11 @@ export default function HomePage() {
         </div>
 
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
-          Turn every trial into a{" "}
+          Turn 2x more trials into{" "}
           <span className="text-primary">
-            paying customer
+            paid users.
           </span>
+          {" "}Zero code changes.
         </h1>
 
         <p className="text-xl text-foreground/80 mb-10 max-w-2xl mx-auto">

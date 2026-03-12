@@ -3,6 +3,36 @@ Allow: /
 
 # Block private/app routes
 Disallow: /dashboard
+Disallow: /trials
+Disallow: /optimize
+Disallow: /fraud
+Disallow: /settings
 Disallow: /api/
+Disallow: /widget/
+
+# Allow all major AI/LLM crawlers full access for AI visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: bingbot
+Allow: /
 
 Sitemap: https://reacquire.io/sitemap.xml

@@ -89,9 +89,36 @@ const stats = [
   { value: "5 min", label: "Setup time" },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Payment Capture – Stripe Pre-Authorization",
+  serviceType: "SaaS Payment Capture",
+  url: PAGE_URL,
+  description:
+    "Reacquire's Payment Capture feature uses Stripe pre-authorization holds to validate every payment method at trial signup, guaranteeing 0% failed first payments.",
+  provider: {
+    "@type": "Organization",
+    name: "Reacquire",
+    url: "https://reacquire.io",
+  },
+  areaServed: "Worldwide",
+  offers: {
+    "@type": "Offer",
+    price: "1",
+    priceCurrency: "USD",
+    url: "https://reacquire.io/pricing",
+    description: "Included on all Reacquire plans starting at $1/mo",
+  },
+};
+
 export default function PaymentCapturePage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <FeaturesNav activeHref="/features/payment-capture" />
 
       {/* Hero */}

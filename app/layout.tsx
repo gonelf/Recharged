@@ -23,10 +23,22 @@ export const metadata: Metadata = {
     "Stripe integration",
     "revenue recovery SaaS",
     "dunning management",
+    "free trial optimization",
+    "SaaS trial conversion",
+    "reduce failed payments",
+    "Stripe pre-auth hold",
+    "SaaS chargeback prevention",
+    "trial signup optimization",
+    "backup payment methods",
+    "payment recovery automation",
+    "SaaS revenue recovery",
+    "trial to paid SaaS tool",
   ],
+  applicationName: "Reacquire",
   authors: [{ name: "Reacquire", url: BASE_URL }],
   creator: "Reacquire",
   publisher: "Reacquire",
+  category: "Business Software",
   robots: {
     index: true,
     follow: true,
@@ -79,7 +91,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const jsonLd = {
+  const softwareAppJsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Reacquire",
@@ -107,12 +119,34 @@ export default function RootLayout({
     },
   };
 
+  const webSiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Reacquire",
+    url: BASE_URL,
+    description:
+      "Turn free trials into paying customers with Stripe pre-auth payment capture, AI signup optimization, dispute protection, and revenue analytics.",
+    inLanguage: "en-US",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${BASE_URL}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <html lang="en">
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
       </head>
       <body>

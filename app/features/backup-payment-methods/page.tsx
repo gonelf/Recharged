@@ -89,9 +89,36 @@ const stats = [
   { value: "2×", label: "Payment recovery vs. email only" },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Backup Payment Methods – Automatic Failed Payment Recovery",
+  serviceType: "Failed Payment Recovery",
+  url: PAGE_URL,
+  description:
+    "Reacquire's Backup Payment Methods feature lets customers save a second card at trial signup and automatically retries failed charges within 5 seconds — recovering 40% of failed payments.",
+  provider: {
+    "@type": "Organization",
+    name: "Reacquire",
+    url: "https://reacquire.io",
+  },
+  areaServed: "Worldwide",
+  offers: {
+    "@type": "Offer",
+    price: "1",
+    priceCurrency: "USD",
+    url: "https://reacquire.io/pricing",
+    description: "Included on all Reacquire plans starting at $1/mo",
+  },
+};
+
 export default function BackupPaymentMethodsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <FeaturesNav activeHref="/features/backup-payment-methods" />
 
       {/* Hero */}
