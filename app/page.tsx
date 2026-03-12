@@ -55,13 +55,32 @@ const jsonLd = {
   "@type": "Organization",
   name: "Reacquire",
   url: BASE_URL,
+  logo: `${BASE_URL}/og-image.png`,
   description:
     "Reacquire turns free trials into paying customers with Stripe pre-authorization, AI optimization, dispute protection, and backup payment methods.",
+  foundingDate: "2024",
+  areaServed: "Worldwide",
   contactPoint: {
     "@type": "ContactPoint",
     email: "sales@reacquire.io",
     contactType: "sales",
+    availableLanguage: "English",
   },
+  makesOffer: [
+    {
+      "@type": "Offer",
+      name: "Reacquire Starter",
+      description: "Full access to all Reacquire features for SaaS teams with up to $5k MRR.",
+      price: "1",
+      priceCurrency: "USD",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "1",
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+    },
+  ],
 };
 
 export default function HomePage() {

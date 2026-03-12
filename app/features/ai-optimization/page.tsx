@@ -89,9 +89,36 @@ const stats = [
   { value: "10+", label: "Variants tested per page" },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "AI Optimization – Signup Page A/B Testing",
+  serviceType: "AI-Powered Conversion Optimization",
+  url: PAGE_URL,
+  description:
+    "Reacquire's AI Optimization feature uses Google Gemini to automatically generate, A/B test, and promote the highest-converting trial signup page variants — achieving a 57% average trial conversion rate.",
+  provider: {
+    "@type": "Organization",
+    name: "Reacquire",
+    url: "https://reacquire.io",
+  },
+  areaServed: "Worldwide",
+  offers: {
+    "@type": "Offer",
+    price: "1",
+    priceCurrency: "USD",
+    url: "https://reacquire.io/pricing",
+    description: "Included on all Reacquire plans starting at $1/mo",
+  },
+};
+
 export default function AiOptimizationPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <FeaturesNav activeHref="/features/ai-optimization" />
 
       {/* Hero */}

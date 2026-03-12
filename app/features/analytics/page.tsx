@@ -89,9 +89,36 @@ const stats = [
   { value: "100%", label: "Stripe-backed data" },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Analytics – Trial-to-Paid Funnel & Revenue Metrics",
+  serviceType: "SaaS Revenue Analytics",
+  url: PAGE_URL,
+  description:
+    "Reacquire's Analytics feature provides real-time trial conversion funnel metrics, MRR tracking, cohort analysis, and churn data — all backed by live Stripe data with 30+ metrics tracked automatically.",
+  provider: {
+    "@type": "Organization",
+    name: "Reacquire",
+    url: "https://reacquire.io",
+  },
+  areaServed: "Worldwide",
+  offers: {
+    "@type": "Offer",
+    price: "1",
+    priceCurrency: "USD",
+    url: "https://reacquire.io/pricing",
+    description: "Included on all Reacquire plans starting at $1/mo",
+  },
+};
+
 export default function AnalyticsPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <FeaturesNav activeHref="/features/analytics" />
 
       {/* Hero */}

@@ -89,9 +89,36 @@ const stats = [
   { value: "3×", label: "Fewer chargebacks" },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: "Dispute Protection – Chargeback Prevention",
+  serviceType: "Fraud Detection and Chargeback Prevention",
+  url: PAGE_URL,
+  description:
+    "Reacquire's Dispute Protection feature screens every trial signup for fraud in real time, blocks known bad actors, and pre-authorizes cards to prevent chargebacks — achieving 3× fewer disputes.",
+  provider: {
+    "@type": "Organization",
+    name: "Reacquire",
+    url: "https://reacquire.io",
+  },
+  areaServed: "Worldwide",
+  offers: {
+    "@type": "Offer",
+    price: "1",
+    priceCurrency: "USD",
+    url: "https://reacquire.io/pricing",
+    description: "Included on all Reacquire plans starting at $1/mo",
+  },
+};
+
 export default function DisputeProtectionPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <FeaturesNav activeHref="/features/dispute-protection" />
 
       {/* Hero */}
